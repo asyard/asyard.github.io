@@ -592,7 +592,10 @@ section,
 }
 
 .hero .social-links {
+  display: none; /* Varsayılan olarak gizle */
   margin-top: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .hero .social-links a {
@@ -606,6 +609,20 @@ section,
 
 .hero .social-links a:hover {
   color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .hero .social-links {
+    display: flex; /* Küçük ekranlarda göster */
+    position: absolute;
+    bottom: -50px; /* Daha aşağıda görünmesi için değeri -50px yaptık */
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero .social-links a {
+    color: #ffffff; /* Küçük ekranlarda ikonları beyaz yap */
+  }
 }
 
 @media (max-width: 768px) {
@@ -1272,4 +1289,41 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*--------------------------------------------------------------
+# Social Links
+--------------------------------------------------------------*/
+.hero .social-links {
+  display: none; /* Varsayılan olarak gizle */
+  margin-top: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero .social-links a {
+  font-size: 24px;
+  display: inline-block;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  line-height: 1;
+  margin-right: 20px;
+  transition: 0.3s;
+}
+
+.hero .social-links a:hover {
+  color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .hero .social-links {
+    display: flex; /* Küçük ekranlarda göster */
+    position: absolute;
+    bottom: -50px; /* Daha aşağıda görünmesi için değeri -50px yaptık */
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero .social-links a {
+    color: #ffffff; /* Küçük ekranlarda ikonları beyaz yap */
+  }
 }
