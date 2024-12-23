@@ -53,22 +53,19 @@
     fetch(action, {
       method: 'POST',
       body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
     })
-    .then(response => {
-      if( response.ok ) {
-        return response.text();
-      } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
-      }
-    })
+    .then(response => response.json())
     .then(data => {
-      thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
+      if (data.ok) {
+        let sentMessageElement = thisForm.querySelector('.sent-message');
+        if (sentMessageElement) {
+          sentMessageElement.classList.add('d-block');
+          thisForm.querySelector('.loading').classList.remove('d-block');
+        }
+        thisForm.reset();
       } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+        throw new Error(data.next || 'Form submission failed and no error message returned from: ' + action);
       }
     })
     .catch((error) => {
